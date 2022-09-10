@@ -1,0 +1,116 @@
+openapi: 3.0.0
+info:
+  contact:
+    email: aravind@agastya-library.in
+    name: Aravind
+    url: http://agastya-library.in
+  description: This is an an organization app. it helps keeps books and other items
+    in location.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: https://agastya-library.in
+  title: rach
+  version: 1.0.0
+servers:
+- url: http://rach.agastya-library.in
+security:
+- api_key: []
+paths:
+  /obj:
+    delete:
+      description: ""
+      operationId: delObj
+      parameters: []
+      responses:
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: obj not found
+        "405":
+          description: Validation exception
+      summary: delete an existing obj
+      tags:
+      - object
+    get:
+      description: ""
+      operationId: getObj
+      parameters: []
+      responses:
+        default:
+          description: Default response
+      summary: ""
+    post:
+      description: ""
+      operationId: addObj
+      parameters: []
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/object'
+        required: true
+      responses:
+        "405":
+          description: Invalid input
+      summary: Adds a new object to home
+    put:
+      description: ""
+      operationId: updateObj
+      parameters: []
+      responses:
+        default:
+          description: Default response
+      summary: ""
+components:
+  callbacks: {}
+  links: {}
+  requestBodies:
+    object:
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                format: int64
+                type: integer
+              shipDate:
+                format: date-time
+                type: string
+              category:
+                description: category of object
+                enum:
+                - holder
+                - books
+                - groceries
+                type: string
+            type: object
+      required: true
+    UserArray:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/object'
+            type: array
+      description: List of user object
+      required: true
+  schemas:
+    object:
+      properties:
+        id:
+          format: int64
+          type: integer
+        category:
+          description: category of object
+          enum:
+          - holder
+          - books
+          - groceries
+          type: string
+      type: object
+  securitySchemes:
+    api_key:
+      in: header
+      name: api_key
+      type: apiKey
