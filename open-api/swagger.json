@@ -67,8 +67,8 @@
         }
       },
       "delete" : {
-        "tags" : [ "pet" ],
-        "summary" : "Update an existing pet",
+        "tags" : [ "object" ],
+        "summary" : "delete an existing obj",
         "description" : "",
         "operationId" : "delObj",
         "parameters" : [ ],
@@ -77,7 +77,7 @@
             "description" : "Invalid ID supplied"
           },
           "404" : {
-            "description" : "Pet not found"
+            "description" : "obj not found"
           },
           "405" : {
             "description" : "Validation exception"
@@ -104,7 +104,7 @@
       }
     },
     "requestBodies" : {
-      "Pet" : {
+      "object" : {
         "content" : {
           "application/json" : {
             "schema" : {
